@@ -30,12 +30,12 @@ class Thermostat {
 
   powerSavingModeOff = () => {
     this._powerSavingMode = false;
-    this._maxTemp = 32;
+    this.changeMaxTemp();
   }
 
   powerSavingModeOn = () => {
     this._powerSavingMode = true;
-    this._maxTemp = 25;
+    this.changeMaxTemp();
   }
 
   energyUsage = () => {
@@ -48,7 +48,11 @@ class Thermostat {
     }
   }
 
-
-  // changeMaxTemp = () => this._maxTemp = 32;
-
+  changeMaxTemp = () => {
+    if(this._powerSavingMode === true) {
+      this._maxTemp = 25;
+    } else if(this._powerSavingMode === false) {
+      this._maxTemp = 32;
+    }
+  }
 }
