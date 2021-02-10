@@ -1,3 +1,5 @@
+"use strict";
+
 describe('Thermostat',function(){
 
   let thermostat;
@@ -58,4 +60,32 @@ describe('Thermostat',function(){
 
   })
 
+  describe('reset', function() {
+
+    it('resets the temperature to 20', function(){
+      thermostat.increaseTemp(5);
+      expect(thermostat.showTemp()).toBe(25);
+      thermostat.reset();
+      expect(thermostat.showTemp()).toBe(20);
+    })
+
+  })
+
+  describe('energyUsage', function(){
+
+    it('is set to low when degrees are < 18', function() {
+      thermostat.decreaseTemp(5);
+      expect(thermostat.showEnergyUsage()).toBe('low-usage');
+    })
+
+    it('is set to medium when degrees are > 18 and <= 25', function() {
+      thermostat.increaseTemp(1);
+      expect(thermostat.showEnergyUsage()).toBe('medium-usage');
+    })
+
+    it('is set to high when degrees are > 25', function() {
+      thermostat.increaseTemp(10);
+      expect(thermostat.showEnergyUsage()).toBe('high-usage');
+    })
+  })
 })
